@@ -1,0 +1,24 @@
+마스터 만들기
+git init
+
+깃 상태확인
+git status 
+
+깃 추가
+git add .
+
+깃 커밋
+git commit -m " "
+
+*(깃허브와 연결하기
+…or push an existing repository from the command line)
+git remote add origin 주소적기!
+git branch -M main
+git push -u origin main
+
+깃허브로 올리기
+git push
+
+깃 삭제
+rm -rf .git
+
