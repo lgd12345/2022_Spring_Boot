@@ -56,7 +56,7 @@ class DemoApplicationTests {
 //        this.qRepo.save(q2);
 
 //데이터 조회
-		// findAll
+// findAll
 //		저장된 모든 데이터 조회를 위해 findAll메서드 사용
 //		3개 데이터가 저장되어 있기 때문에 데이터 사이즈는 3
 // 		데이터 사이즈 확인을 위해 JUnit의 assertEquals메서드 사용 (기대값 , 실제값) 동일한지 조사
@@ -73,7 +73,7 @@ class DemoApplicationTests {
 //		로컬 서버 중지 JUnit 실행
 //		System.out.println(q.getSubject());
 		
-//		findById Question엔티티의 Id 값으로 데이터 조회하기
+//findById Question엔티티의 Id 값으로 데이터 조회하기
 //		findById의 리턴타입은 Optional이다. isPresent로 널 확인을 한 후 get으로 실제 데이터 값 얻음
 
 //		Optional<Question> oq = this.qRepo.findById(1);
@@ -83,20 +83,21 @@ class DemoApplicationTests {
 //			assertEquals("sbb가 무엇인가요?", q.getSubject());
 //		}
 		
-//		findBySubject 엔티티의 subject 값으로 데이터를 조회한다.
+//findBySubject 엔티티의 subject 값으로 데이터를 조회한다.
 //		사용하려면 QuestionRepository 인터페이스를 변경후  사용해야함
 //		제목으로 데이터 조회 가능!
 		
 //		Question q = this.qRepo.findBySubject("sbb가 무엇인가요?");
 //		assertEquals(1, q.getId());
 		
-		// subject, content 둘다 조회 and 조건으로 where 문에서 사용됨
+//subject, content 둘다 조회 and 조건으로 where 문에서 사용됨
 		
 //		Question q1 = this.qRepo.findBySubjectAndContent(
 //				"sbb가 무엇인가요?","sbb에 대해서 알고 싶습니다.");
 //		assertEquals(1, q1.getId());
-		
-//		sbb%: sbb로 시작하는 문자열, %sbb로 끝나는 문자열 , %sbb%를 포함하는 문자열
+
+//특정문자열이 포함된 데이터 조회하기
+//sbb%: sbb로 시작하는 문자열, %sbb로 끝나는 문자열 , %sbb%를 포함하는 문자열
 //		List<Question> qList = this.qRepo.findBySubjectLike("sbb%");
 //		Question q = qList.get(0);
 //		assertEquals("sbb가 무엇인가요?", q.getSubject());

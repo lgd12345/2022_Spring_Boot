@@ -15,10 +15,14 @@ import com.example.demo.model.Question;
 // 해당 프라이머리키 속성타입은 Integer이니까 Integer를 적는다.
 // 이제 테이블에 데이터 저장 조회 가능!
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
+	
+// findAll()을 따로 메소드를 만들어 주지 않아도 쓸 수 있는 이유!
+// findAll()는 jpa하이버네이트에서 자동으로 구현된 findAll메소드이다. DB에서 질문데이터를 가져온다.
+
 // findBySubject 메서드 사용위해서 추가
 	Question findBySubject(String subject);
 // subject,content 같이 조회
-	Question findBySubjectAndContent(String subject, String contient);
+	Question findBySubjectAndContent(String subject, String content);
 // 특정문자열 포함된 데이터 조회 하기 위해 추가
 	List<Question> findBySubjectLike(String subject);
 }
