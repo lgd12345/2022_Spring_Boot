@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/bootstrap.min.css}" />
 
 <head>
     <meta charset="UTF-8">
@@ -9,30 +10,34 @@
 </head>
 
 <body>
-    <h1>Hello template!!! thymeleaf !!</h1>
-    <!-- 조건문 속성 null이 아닌 경우 표시하시오 -->
-    <table th:if="${qList} != null">
-        <thead>
-            <tr>
-                <th>제목</th>
-                <th>작성일시</th>
-            </tr>
-        </thead>
-        <tbody style="text-align: center">
-            <!-- 반복문 속성 th:each 반복횟수만큰 해당 엘리먼트를 반복하여 표시한다. -->
-            <tr th:each="question : ${qList}">
-
-                <!-- 분기문 속성 사용법: th:if="${question != null}" 
+    <br />
+    <h1 style="text-align: center">Hello template!!! thymeleaf !!</h1>
+    <div class="container my-3">
+        <!-- 조건문 속성 null이 아닌 경우 표시하시오 -->
+        <table class="table" th:if="${qList} != null">
+            <thead class="table-dark">
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성일시</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center">
+                <!-- 반복문 속성 th:each 반복횟수만큰 해당 엘리먼트를 반복하여 표시한다. -->
+                <tr th:each="question, loop : ${qList}">
+                    <td th:text="${loop.count}"></td>
+                    <!-- 분기문 속성 사용법: th:if="${question != null}" 
                 위의 경우 question 객체가 null 이 아닌 경우에 해당 엘리먼트가 표시된다. -->
 
-                <!-- 텍스트속성 th:text 해당 엘리먼트의 값 출력 -->
-                <!-- th:text 이거 안쓰고 대괄호 두개 사용해도 됨-->
-                <!-- 타임리프: 표현식 안에 표현식 쓰기 : @{}안에 변수 쓰려면 변수 앞뒤에 __를 붙인다. -->
-                <td><a th:href="@{/question/detail/__${question.id}__}" th:text="${question.subject}"></td>
-                <td>[[${question.createDate}]]</td>
-            </tr>
-        </tbody>
-    </table>
+                    <!-- 텍스트속성 th:text 해당 엘리먼트의 값 출력 -->
+                    <!-- th:text 이거 안쓰고 대괄호 두개 사용해도 됨-->
+                    <!-- 타임리프: 표현식 안에 표현식 쓰기 : @{}안에 변수 쓰려면 변수 앞뒤에 __를 붙인다. -->
+                    <td><a th:href="@{/question/detail/__${question.id}__}" th:text="${question.subject}"></td>
+                    <td>[[${question.createDate}]]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 

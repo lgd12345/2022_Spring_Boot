@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +12,23 @@
 <body>
     <h1 th:text="${question.subject}"></h1>
     <div th:text="${question.content}"></div>
+    <br />
+    <hr />
+    <hr />
+    <!-- #lists.size(인터러블객체)는 타임리프에서 제공하는 유틸리티: 객체의 길이 반환 -->
+    <h5 th:text="${#lists.size(question.answerList)+'개의 답변이 있습니다.'}"></h5>
+    <div>
+        <ul>
+            <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
+        </ul>
+    </div>
+    <br />
+    <hr />
+    <form th:action="@{/answer/create/__${question.id}__}" method="post">
+        <textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="답변등록" />
+    </form>
+
 </body>
 
 </html>
