@@ -1,33 +1,53 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<head th:replace="layout::head"></head>
+<!-- layout.html적용시킴 -->
 
 <body>
-    <h1 th:text="${question.subject}"></h1>
-    <div th:text="${question.content}"></div>
-    <br />
-    <hr />
-    <hr />
-    <!-- #lists.size(인터러블객체)는 타임리프에서 제공하는 유틸리티: 객체의 길이 반환 -->
-    <h5 th:text="${#lists.size(question.answerList)+'개의 답변이 있습니다.'}"></h5>
-    <div>
-        <ul>
-            <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
-        </ul>
+    <div class="container my-3">
+        <br />
+        <!-- 질문 카드 -->
+        <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div th:text="${#temporals.format(question.createDate,'yyyy-mm-dd HH:mm')}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <br />
+        <!-- #lists.size(인터러블객체)는 타임리프에서 제공하는 유틸리티: 객체의 길이 반환 -->
+        <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(question.answerList)+'개의 답변이 있습니다.'}"></h5>
+        <!-- 답변리스트로 출력 -->
+        <div class="card my-3" th:each="answer : ${question.answerList}">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start"></div>
+                </div>
+            </div>
+        </div>
+        <!-- o 네 자동으로 생성됩니다.
+             o 답변을 입력합니다.
+             O 입력 이런식으로 나오는 것 -->
+        <!-- <div>
+            <ul>
+                <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
+            </ul>
+        </div> -->
+        <hr />
+        <!-- 답변 리스트 출력 (반복) 끝 -->
+        <!-- 답변 입력 시작-->
+        <form th:action="@{/answer/create/__${question.id}__}" method="post" class="my-3">
+            <textarea name="content" id="content" rows="10" class="form-control"></textarea>
+            <input type="submit" value="답변등록" class="btn btn-primary my-2" />
+        </form>
+
     </div>
-    <br />
-    <hr />
-    <form th:action="@{/answer/create/__${question.id}__}" method="post">
-        <textarea name="content" id="content" rows="15"></textarea>
-        <input type="submit" value="답변등록" />
-    </form>
+
+
 
 </body>
 

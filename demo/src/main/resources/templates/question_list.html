@@ -32,11 +32,15 @@
                     <!-- 텍스트속성 th:text 해당 엘리먼트의 값 출력 -->
                     <!-- th:text 이거 안쓰고 대괄호 두개 사용해도 됨-->
                     <!-- 타임리프: 표현식 안에 표현식 쓰기 : @{}안에 변수 쓰려면 변수 앞뒤에 __를 붙인다. -->
-                    <td><a th:href="@{/question/detail/__${question.id}__}" th:text="${question.subject}"></td>
-                    <td>[[${question.createDate}]]</td>
+                    <td><a th:href="@{/question/detail/__${question.id}__}">
+                            [[${question.subject}]]</td>
+                    <td th:text="${#temporals.format(question.createDate,'yyyy-mm-dd HH:mm')}"></td>
+                    <!-- 날짜 속성 #temporals.format(날짜객체,날짜포맷) 날짜객체를 포멧에 맞게 변환함 -->
                 </tr>
             </tbody>
         </table>
+        <!-- 질문 입력 버튼 -->
+        <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
     </div>
 
 </body>
